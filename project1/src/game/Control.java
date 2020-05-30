@@ -42,16 +42,21 @@ public class Control {
     public void inputArrow(int arrow){
         switch (arrow){
             case 0:// move up
+                moveUp();
                 break;
             case 1:// move down
+                moveDown();
                 break;
             case 2://move right
+                moveRight();
                 break;
             case 3://move left
+                moveLeft();
                 break;
             default:
                 break;
         }
+
     }
 
     private void moveUp(){
