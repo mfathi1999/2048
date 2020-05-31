@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Random;
+
 public class Control {
 
     private int[][] gameArray;
@@ -81,6 +83,28 @@ public class Control {
         return true;
     }
     public void randomNewHome(){
+        Random rand = new Random();
+        int row  = rand.nextInt(gameArraySize); // bound 0 - game array size for example 0-4
+        int column  = rand.nextInt(gameArraySize);
+        //  if point have a value we must get random position again
 
+        // this method may be have bug if all of the points have value and player not yet loss this loop not be stop
+        // we can declare a variable to solve this problem
+        int checkAllPointSelected = 0;
+        while(gameArray[row][column] != 0)
+        {
+            if(checkAllPointSelected == gameArraySize * gameArraySize)
+                break;
+
+            row  = rand.nextInt(gameArraySize);
+            column  = rand.nextInt(gameArraySize);
+            checkAllPointSelected ++;
+        }
+        int selectBetween2Or4 = rand.nextInt(2); // we need 0 or 1 to select item
+//        if(selectBetween2Or4 == 1);
+//            select 4;
+//        else
+//            select 2
+        // complete here later
     }
 }
