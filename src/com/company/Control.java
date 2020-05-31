@@ -94,17 +94,26 @@ public class Control {
         while(gameArray[row][column] != 0)
         {
             if(checkAllPointSelected == gameArraySize * gameArraySize)
-                break;
+                // may be not working for this problem convert to break and random point value should not set 2 of 4 .
+                return;
 
             row  = rand.nextInt(gameArraySize);
             column  = rand.nextInt(gameArraySize);
             checkAllPointSelected ++;
         }
         int selectBetween2Or4 = rand.nextInt(2); // we need 0 or 1 to select item
-//        if(selectBetween2Or4 == 1);
-//            select 4;
-//        else
-//            select 2
-        // complete here later
+
+        //**** important ****
+        // if use break in while loop should not set value for randomize point
+//        gameArray[row][column];
+
+        if(selectBetween2Or4 == 1)
+        {
+            gameArray[row][column] = 4;
+        }
+        else
+        {
+            gameArray[row][column] = 2;
+        }
     }
 }
