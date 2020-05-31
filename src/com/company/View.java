@@ -1,5 +1,6 @@
 package com.company;//package game;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class View {
@@ -14,6 +15,21 @@ public class View {
     //  best structure using variable private in this package with integer variable name but now declared to private variable.
     private int [][]gameArray;
 
+
+    //  clean Previous map if using windows os using cls else (using mac os or linux system using "^c".
+    private void clear() throws IOException, InterruptedException {
+
+        final String operatingSystem = System.getProperty("os.name");
+        if (System.getProperty("os.name").contains("Windows"))
+        {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        }
+        else
+        {
+            System.out.print("\033\143");
+        }
+    }
+
     public void startGame(){
 
         //  create game with makeGame function . when game make function called create game array with zero value and randomize select 2 position and values of these set to  2 or 4 value
@@ -23,17 +39,17 @@ public class View {
         gameArray = ctrlObject.getGameArray();
 
     }
-    public void printGamePlan(){
+    private void printGamePlan(){
 
         for (int i = 0;i < sizeArray;i++)
         {
             for(int k = 0;k < sizeArray;k++)
             {
-                System.out.println(gameArray[i][k]);
+                System.out.println(gameArray[i][k] + "\t");
             }
         }
     }
-    public void inputArrow(int arrow){
+    private void inputArrow(int arrow){
 
 //        Scanner in = new Scanner(System.in);
 //        int arrow = in.nextInt();
@@ -46,12 +62,25 @@ public class View {
         ctrlObject.inputArrow(arrow);
 
     }
-    public void Win(){
+    private void Win(){
         if(ctrlObject.isWin())
             System.out.println("win");
     }
-    public void Lose(){
+    private void Lose(){
         if (ctrlObject.isLose())
             System.out.println("Loss");
+    }
+
+    public void playing(int arrow) throws IOException, InterruptedException {
+        inputArrow(arrow);
+
+        clear();
+
+        if(ctrlObject.isWin())
+            Win();
+        else if(ctrlObject.isLose())
+            Lose();
+        else
+            printGamePlan();
     }
 }
