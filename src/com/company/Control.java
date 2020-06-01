@@ -103,7 +103,7 @@ public class Control {
             int [][] rotetedGameArray = new int[gameArraySize][gameArraySize];
             for(int row=0;row<gameArraySize;row++){
                 for(int col=0;col<gameArraySize;col++){
-                    rotetedGameArray[gameArraySize-col-1][row]=gameArray[row][col]
+                    rotetedGameArray[gameArraySize-col-1][row]=gameArray[row][col];
                 }
             }
             gameArray = rotetedGameArray;
