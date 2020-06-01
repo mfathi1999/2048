@@ -10,7 +10,6 @@ public class Control {
     private int gameArraySize;
     private boolean win;
 
-
     public Control(){
         this(4);
     }
@@ -159,8 +158,26 @@ public class Control {
         }
         return true;
     }
+
+//    private int numberOfPintNotHavingZero()
+//    {
+//        int count = 0;
+//
+//        for (int row = 0; row < gameArraySize; row++)
+//        {
+//            for (int column = 0; column < gameArraySize; column++)
+//            {
+//                if (gameArray[row][column] == 0)
+//                    count++;
+//            }
+//        }
+//        //return count of points value are zero
+//        //for check with this func you can use if
+//        return count;
+//    }
     public void randomNewHome(){
         Random rand = new Random();
+
         int row  = rand.nextInt(gameArraySize); // bound 0 - game array size for example 0-4
         int column  = rand.nextInt(gameArraySize);
         //  if point have a value we must get random position again
