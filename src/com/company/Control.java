@@ -135,6 +135,28 @@ public class Control {
     }
     public boolean isLose(){
         // return true if player lose the Game
+        for(int row=0;row<gameArraySize;row++){
+            for (int col=0;col<gameArraySize;col++){
+                if(gameArray[row][col]==0){
+                    return false;
+                }
+                else{
+                    if(row-1>=0 && gameArray[row-1][col] == gameArray[row][col]){
+                        return false;
+                    }
+                    if(row+1<gameArraySize && gameArray[row+1][col] == gameArray[row][col]){
+                        return false;
+                    }
+                    if(col-1>=0 && gameArray[row][col-1] == gameArray[row][col]){
+                        return false;
+                    }
+                    if(col+1<gameArraySize && gameArray[row][col+1] == gameArray[row][col]){
+                        return false;
+                    }
+
+                }
+            }
+        }
         return true;
     }
     public void randomNewHome(){
