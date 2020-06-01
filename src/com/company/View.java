@@ -1,10 +1,5 @@
 package com.company;//package game;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class View {
 
 
@@ -15,22 +10,22 @@ public class View {
     private final Control ctrlObject = new Control(sizeArray);
 
     //  best structure using variable private in this package with integer variable name but now declared to private variable.
-    private int [][]gameArray;
+//    private int [][]gameArray;
 
 
     //  clean Previous map if using windows os using cls else (using mac os or linux system using "^c".
-    private void clear() throws IOException, InterruptedException {
-
-        final String operatingSystem = System.getProperty("os.name");
-        if (System.getProperty("os.name").contains("Windows"))
-        {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        }
-        else
-        {
-            System.out.print("\033\143");
-        }
-    }
+//    private void clear() throws IOException, InterruptedException {
+//
+//        final String operatingSystem = System.getProperty("os.name");
+//        if (System.getProperty("os.name").contains("Windows"))
+//        {
+//            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+//        }
+//        else
+//        {
+//            System.out.print("\033\143");
+//        }
+//    }
 
     public void startGame(){
 
@@ -38,31 +33,24 @@ public class View {
         ctrlObject.makeGame();
 
         //allocation gameArray with ctrlObject gameArray values.
-        gameArray = ctrlObject.getGameArray();
+//        gameArray = ctrlObject.getGameArray();
 
     }
-    private void printGamePlan(){
-
-        System.out.println(Arrays.deepToString(gameArray).replace("],", "],\n"));
-//        for (int i = 0;i < sizeArray;i++)
-//        {
-//            for(int k = 0;k < sizeArray;k++)
-//            {
-//                System.out.printf('%s',gameArray[i][k]);
-//            }
-//        }
+    public void printGamePlan(){
+        int[][] gameArray = ctrlObject.getGameArray();
+        for (int i = 0;i < sizeArray;i++)
+        {
+            for(int k = 0;k < sizeArray;k++)
+            {
+                System.out.print(gameArray[i][k] + "\t");
+            }
+            System.out.println();
+        }
     }
-    private void inputArrow(int arrow){
+    public void inputArrow(int arrow){
 
-//        Scanner in = new Scanner(System.in);
-//        int arrow = in.nextInt();
-        //  I think about how to get arrow and write scanner input method for give a variable but mmad worked on it before and I didn't see that :|
-
-
-        //  **** important point ****
-        // if using keypad for arrow before pass to inputArrow function convert to int by this key
-        //  up -> 0 , down -> 1 , right -> 2 , left -> 3
         ctrlObject.inputArrow(arrow);
+//        gameArray=ctrlObject.getGameArray();
 
     }
     private void Win(){
@@ -74,16 +62,6 @@ public class View {
             System.out.println("Loss");
     }
 
-    public void playing(int arrow) {
-        inputArrow(arrow);
-        printGamePlan();
-//        clear();
 
-//        if(ctrlObject.isWin())
-//            Win();
-//        else if(ctrlObject.isLose())
-//            Lose();
-//        else
-//            printGamePlan();
-    }
 }
+

@@ -10,6 +10,7 @@ public class Control {
     private int gameArraySize;
     private boolean win;
 
+
     public Control(){
         this(4);
     }
@@ -45,15 +46,19 @@ public class Control {
         switch (arrow){
             case 0:// move up
                 moveUp();
+                randomNewHome();
                 break;
             case 1:// move down
                 moveDown();
+                randomNewHome();
                 break;
             case 2://move right
                 moveRight();
+                randomNewHome();
                 break;
             case 3://move left
                 moveLeft();
+                randomNewHome();
                 break;
             default:
                 break;
@@ -83,10 +88,17 @@ public class Control {
 
             for(int j=0;j<gameArraySize;j++){
                 if(gameArray[i][j] != 0){
-                    if(gameArray[i][j] == linkedList.getFirst()) {
-                        linkedList.removeFirst();
+
+                    if(linkedList.peekLast()!=null && gameArray[i][j] == linkedList.peekLast()) {
+                        linkedList.removeLast();
                         linkedList.addLast(gameArray[i][j] * 2);
                         gameArray[i][j] = 0;
+                    }
+                    else {
+                        linkedList.addLast(gameArray[i][j] );
+                        gameArray[i][j] = 0;
+
+
                     }
                 }
             }
@@ -158,56 +170,61 @@ public class Control {
         }
         return true;
     }
-
-//    private int numberOfPintNotHavingZero()
-//    {
-//        int count = 0;
-//
-//        for (int row = 0; row < gameArraySize; row++)
-//        {
-//            for (int column = 0; column < gameArraySize; column++)
-//            {
-//                if (gameArray[row][column] == 0)
-//                    count++;
-//            }
-//        }
-//        //return count of points value are zero
-//        //for check with this func you can use if
-//        return count;
-//    }
     public void randomNewHome(){
-        Random rand = new Random();
-
-        int row  = rand.nextInt(gameArraySize); // bound 0 - game array size for example 0-4
-        int column  = rand.nextInt(gameArraySize);
-        //  if point have a value we must get random position again
-
-        // this method may be have bug if all of the points have value and player not yet loss this loop not be stop
-        // we can declare a variable to solve this problem
-        int checkAllPointSelected = 0;
-        while(gameArray[row][column] != 0)
-        {
-            if(checkAllPointSelected == gameArraySize * gameArraySize)
-                // may be not working for this problem convert to break and random point value should not set 2 of 4 .
-                return;
-
-            row  = rand.nextInt(gameArraySize);
-            column  = rand.nextInt(gameArraySize);
-            checkAllPointSelected ++;
+//        Random rand = new Random();
+//        int row  = rand.nextInt(gameArraySize); // bound 0 - game array size for example 0-4
+//        int column  = rand.nextInt(gameArraySize);
+//        //  if point have a value we must get random position again
+//
+//        // this method may be have bug if all of the points have value and player not yet loss this loop not be stop
+//        // we can declare a variable to solve this problem
+//        int checkAllPointSelected = 0;
+//        while(gameArray[row][column] != 0)
+//        {
+//            if(checkAllPointSelected == gameArraySize * gameArraySize)
+//                // may be not working for this problem convert to break and random point value should not set 2 of 4 .
+//                return;
+//
+//            row  = rand.nextInt(gameArraySize);
+//            column  = rand.nextInt(gameArraySize);
+//            checkAllPointSelected ++;
+//        }
+//        int selectBetween2Or4 = rand.nextInt(2); // we need 0 or 1 to select item
+//
+//        //**** important ****
+//        // if use break in while loop should not set value for randomize point
+////        gameArray[row][column];
+//
+//        if(selectBetween2Or4 == 1)
+//        {
+//            gameArray[row][column] = 4;
+//        }
+//        else
+//        {
+//            gameArray[row][column] = 2;
+//        }
+        LinkedList<String> l = new LinkedList<String>();
+        for(int row=0;row<gameArraySize;row++){
+            for (int col=0;col<gameArraySize;col++){
+                if(gameArray[row][col]==0){
+                    String s =  Integer.toString(row);
+                    s += Integer.toString(col);
+                    l.addLast(s);
+                }
+            }
         }
-        int selectBetween2Or4 = rand.nextInt(2); // we need 0 or 1 to select item
 
-        //**** important ****
-        // if use break in while loop should not set value for randomize point
-//        gameArray[row][column];
+        Random random=new Random();
+        int rand = random.nextInt(gameArraySize);
+        String randomed = l.get(rand);
+        if (random.nextInt(2)==0) {
+            gameArray[Integer.parseInt(String.valueOf(randomed.charAt(0)))][Integer.parseInt(String.valueOf(randomed.charAt(1)))] = 2;
+        }
+        else {
+            gameArray[Integer.parseInt(String.valueOf(randomed.charAt(0)))][Integer.parseInt(String.valueOf(randomed.charAt(1)))] = 4;
 
-        if(selectBetween2Or4 == 1)
-        {
-            gameArray[row][column] = 4;
         }
-        else
-        {
-            gameArray[row][column] = 2;
         }
-    }
-}
+
+};
+
