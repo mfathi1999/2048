@@ -3,6 +3,7 @@ package com.company;
 
 //import Veiw
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -20,6 +21,6 @@ public class Main {
             view.printGamePlan();
         }
 
+        }
 
-    }
-}
+};

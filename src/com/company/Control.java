@@ -170,7 +170,7 @@ public class Control {
         }
         return true;
     }
-    public void randomNewHome(){
+    public void randomNewHome() {
 //        Random rand = new Random();
 //        int row  = rand.nextInt(gameArraySize); // bound 0 - game array size for example 0-4
 //        int column  = rand.nextInt(gameArraySize);
@@ -204,27 +204,27 @@ public class Control {
 //            gameArray[row][column] = 2;
 //        }
         LinkedList<String> l = new LinkedList<String>();
-        for(int row=0;row<gameArraySize;row++){
-            for (int col=0;col<gameArraySize;col++){
-                if(gameArray[row][col]==0){
-                    String s =  Integer.toString(row);
+        for (int row = 0; row < gameArraySize; row++) {
+            for (int col = 0; col < gameArraySize; col++) {
+                if (gameArray[row][col] == 0) {
+                    String s = Integer.toString(row);
                     s += Integer.toString(col);
                     l.addLast(s);
                 }
             }
         }
 
-        Random random=new Random();
-        int rand = random.nextInt(gameArraySize);
-        String randomed = l.get(rand);
-        if (random.nextInt(2)==0) {
-            gameArray[Integer.parseInt(String.valueOf(randomed.charAt(0)))][Integer.parseInt(String.valueOf(randomed.charAt(1)))] = 2;
-        }
-        else {
-            gameArray[Integer.parseInt(String.valueOf(randomed.charAt(0)))][Integer.parseInt(String.valueOf(randomed.charAt(1)))] = 4;
+        if (!l.isEmpty()) {
+        Random random = new Random();
+        int rand = random.nextInt(l.size());
+            String randomed = l.get(rand);
+            if (random.nextInt(2) == 0) {
+                gameArray[Integer.parseInt(String.valueOf(randomed.charAt(0)))][Integer.parseInt(String.valueOf(randomed.charAt(1)))] = 2;
+            } else {
+                gameArray[Integer.parseInt(String.valueOf(randomed.charAt(0)))][Integer.parseInt(String.valueOf(randomed.charAt(1)))] = 4;
 
+            }
         }
-        }
-
+    }
 };
 

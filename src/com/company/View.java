@@ -48,18 +48,30 @@ public class View {
         }
     }
     public void inputArrow(int arrow){
-
+        if(ctrlObject.isLose()){
+            Lose();
+        }
+        if(ctrlObject.isWin()){
+            Win();
+        }
         ctrlObject.inputArrow(arrow);
+
 //        gameArray=ctrlObject.getGameArray();
 
     }
     private void Win(){
-        if(ctrlObject.isWin())
+        if(ctrlObject.isWin()) {
             System.out.println("win");
+            System.exit(0);
+
+        }
     }
     private void Lose(){
-        if (ctrlObject.isLose())
+        if (ctrlObject.isLose()) {
             System.out.println("Loss");
+            System.exit(0);
+
+        }
     }
 
 
