@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Control {
@@ -62,16 +63,70 @@ public class Control {
     }
 
     private void moveUp(){
-
+        rotateLeft(90);
+        moveLeft();
+        rotateRight(90);
     }
     private void moveDown(){
-
+        rotateRight(90);
+        moveLeft();
+        rotateLeft(90);
     }
     private void moveRight(){
-
+        rotateLeft(180);
+        moveLeft();
+        rotateRight(180);
     }
     private void moveLeft(){
 
+        for(int i=0;i<gameArraySize;i++){
+            LinkedList<Integer> linkedList = new LinkedList<Integer>();
+
+            for(int j=0;j<gameArraySize;j++){
+                if(gameArray[i][j] != 0){
+                    if(gameArray[i][j] == linkedList.getFirst()) {
+                        linkedList.removeFirst();
+                        linkedList.addLast(gameArray[i][j] * 2);
+                        gameArray[i][j] = 0;
+                    }
+                }
+            }
+            for(int j=0;!linkedList.isEmpty();j++){
+                gameArray[i][j]= linkedList.removeFirst();
+            }
+
+        }
+    }
+
+    private void rotateLeft(int degree){ // 90 or 180 degree
+        if(degree == 90){
+            int [][] rotetedGameArray = new int[gameArraySize][gameArraySize];
+            for(int row=0;row<gameArraySize;row++){
+                for(int col=0;col<gameArraySize;col++){
+                    rotetedGameArray[gameArraySize-col-1][row]=gameArray[row][col]
+                }
+            }
+            gameArray = rotetedGameArray;
+        }
+        else if(degree == 180){
+            rotateLeft(90);
+            rotateLeft(90);
+        }
+    }
+    private void rotateRight(int degree){ // 90 or 180 degree
+        if(degree == 90){
+            int [][] rotetedGameArray = new int[gameArraySize][gameArraySize];
+            for(int row=0;row<gameArraySize;row++){
+                for(int col=0;col<gameArraySize;col++){
+                    rotetedGameArray[col][gameArraySize-row-1]=gameArray[row][col];
+                }
+            }
+            gameArray = rotetedGameArray;
+        }
+        else if(degree == 180){
+            rotateLeft(90);
+            rotateLeft(90);
+        }
     }
 
     //return true if player win the game
