@@ -20,13 +20,21 @@ public class Main {
 //            System.out.print("\033\143");
 //        }
 //    }
+    public static void test(int arrow) {
+        View vw = new View();
+        vw.startGame();
+        vw.playing(arrow);
+//        vw.startGame();
+    }
 
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
+    public static void main(String[] args) {
+
+
 
 //        System.out.println("Hello mmad");
-        Main ml = new Main();
-        View game = new View();
-        game.startGame();
+//        Main ml = new Main();
+//        View game = new View();
+//        game.startGame();
 //        game.printGamePlan();
 
 //        View game = View.class.newInstance();
@@ -34,13 +42,10 @@ public class Main {
 //        Control cl = new Control();
         Scanner input = new Scanner(System.in);
         int arrow = input.nextInt();
+        test(arrow);
         //convert arrow string to integer if get it  with press an key
 
-        try {
-            game.playing(arrow);
+        //            game.playing(arrow);
 //            clear();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

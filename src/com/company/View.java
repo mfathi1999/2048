@@ -1,6 +1,8 @@
 package com.company;//package game;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class View {
@@ -41,13 +43,14 @@ public class View {
     }
     private void printGamePlan(){
 
-        for (int i = 0;i < sizeArray;i++)
-        {
-            for(int k = 0;k < sizeArray;k++)
-            {
-                System.out.println(gameArray[i][k] + "\t");
-            }
-        }
+        System.out.println(Arrays.deepToString(gameArray).replace("],", "],\n"));
+//        for (int i = 0;i < sizeArray;i++)
+//        {
+//            for(int k = 0;k < sizeArray;k++)
+//            {
+//                System.out.printf('%s',gameArray[i][k]);
+//            }
+//        }
     }
     private void inputArrow(int arrow){
 
@@ -71,16 +74,16 @@ public class View {
             System.out.println("Loss");
     }
 
-    public void playing(int arrow) throws IOException, InterruptedException {
+    public void playing(int arrow) {
         inputArrow(arrow);
+        printGamePlan();
+//        clear();
 
-        clear();
-
-        if(ctrlObject.isWin())
-            Win();
-        else if(ctrlObject.isLose())
-            Lose();
-        else
-            printGamePlan();
+//        if(ctrlObject.isWin())
+//            Win();
+//        else if(ctrlObject.isLose())
+//            Lose();
+//        else
+//            printGamePlan();
     }
 }
